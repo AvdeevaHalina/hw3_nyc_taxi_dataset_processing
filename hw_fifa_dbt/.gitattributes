@@ -1,0 +1,2 @@
+hw_fifa_dbt/seeds/male_players.csv filter=lfs diff=lfs merge=lfs -text
+hw_fifa_dbt/seeds/male_teams.csv filter=lfs diff=lfs merge=lfs -text

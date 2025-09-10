@@ -1,0 +1,77 @@
+# models/mart/schema.yml
+version: 2
+
+models:
+  - name: mart_player_profiles_male
+    description: "Comprehensive player profiles with classifications for male players"
+    columns:
+      - name: player_id
+        description: "Unique identifier for the player"
+        tests:
+          - unique
+          - not_null
+      - name: age_group
+        description: "Age classification (U21, Prime, Veteran)"
+        tests:
+          - accepted_values:
+              values: ['U21', 'Prime', 'Veteran']
+      - name: player_role
+        description: "Classified player role based on attributes"
+        tests:
+          - accepted_values:
+              values: ['Wingback', 'Poacher', 'Regista', 'Center Back', 'Winger', 'Playmaker', 'All-Round Player']
+  - name: mart_player_profiles_female
+    description: "Comprehensive player profiles with classifications for female players"
+    columns:
+      - name: player_id
+        description: "Unique identifier for the player"
+        tests:
+          - unique
+          - not_null
+      - name: age_group
+        description: "Age classification (U21, Prime, Veteran)"
+        tests:
+          - accepted_values:
+              values: ['U21', 'Prime', 'Veteran']
+      - name: player_role
+        description: "Classified player role based on attributes"
+        tests:
+          - accepted_values:
+              values: ['Wingback', 'Poacher', 'Regista', 'Center Back', 'Winger', 'Playmaker', 'All-Round Player']
+  - name: mart_team_dashboard
+    description: "Comprehensive team dashboard with key metrics for both male and female teams"
+    columns:
+      - name: club_id
+        description: "Unique identifier for the club"
+        tests:
+          - unique:
+              config:
+                where: "gender = 'male'"
+              name: "unique_club_id_male"
+          - unique:
+              config:
+                where: "gender = 'female'"
+              name: "unique_club_id_female"
+      - name: gender
+        description: "Team gender (male/female)"
+        tests:
+          - accepted_values:
+              values: ['male', 'female']
+      - name: avg_team_rating
+        description: "Average rating of all players in the team"
+      - name: total_team_value_eur
+        description: "Total market value of the team in EUR"
+      - name: total_players
+        description: "Total number of players in the team"
+      - name: top_3_players
+        description: "Names of the top 3 rated players"
+      - name: top_3_avg_rating
+        description: "Average rating of top 3 players"
+      - name: overperforming_players
+        description: "List of players performing above average + 1 standard deviation"
+      - name: num_overperforming
+        description: "Number of overperforming players"
+      - name: avg_age
+        description: "Average age of the team"
+      - name: top_3_value_percentage
+        description: "Percentage of team value concentrated in top 3 players"

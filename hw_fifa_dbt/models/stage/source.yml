@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: hw_fifa_dbt
+    schema: hw_dbt_havdeeva
+    tables:
+      - name: male_teams
+      - name: male_players
+      - name: male_coaches
+      - name: female_teams
+      - name: female_players
+      - name: female_coaches
