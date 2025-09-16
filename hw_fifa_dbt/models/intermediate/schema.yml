@@ -1,0 +1,87 @@
+version: 2
+
+models:
+  - name: int_players_male
+    description: "Intermediate table for male players with unified columns and gender field."
+    columns:
+      - name: player_id
+        description: "Unique identifier for each player."
+        tests:
+          - unique
+          - not_null
+      - name: gender
+        description: "Gender of the player (male)."
+        tests:
+          - not_null
+      - name: wage_eur
+        description: "Player's weekly wage in EUR"
+        tests:
+          - test_wage_value_not_exeeds_value_eur
+  - name: int_players_female
+    description: "Intermediate table for female players with unified columns and gender field."
+    columns:
+      - name: player_id
+        description: "Unique identifier for each player."
+        tests:
+          - unique
+          - not_null
+      - name: gender
+        description: "Gender of the player (female)."
+        tests:
+          - not_null
+      - name: wage_eur
+        description: "Player's weekly wage in EUR"
+        tests:
+          - test_wage_value_not_exeeds_value_eur
+  - name: int_team_profiles_male
+    description: "Aggregated team profiles for male teams"
+    columns:
+      - name: club_id
+        description: "The unique identifier of the club"
+        tests:
+          - unique
+          - not_null
+      - name: avg_rating
+        description: "Average rating of all players in the team"
+        tests:
+          - test_avg_rating_range
+      - name: total_team_value_eur
+        description: "Total value of all players in the team in EUR"
+  - name: int_team_profiles_female
+    description: "Aggregated team profiles for female teams"
+    columns:
+      - name: club_id
+        description: "The unique identifier of the club"
+        tests:
+          - unique
+          - not_null
+      - name: avg_rating
+        description: "Average rating of all players in the team"
+        tests:
+          - test_avg_rating_range
+      - name: total_team_value_eur
+        description: "Total value of all players in the team in EUR"
+  - name: int_league_insights_male
+    description: "League level analytics for male leagues"
+    columns:
+      - name: league_id
+        description: "The unique identifier of the league"
+        tests:
+          - unique
+          - not_null
+      - name: avg_league_rating
+        description: "Average rating of all teams in the league"
+      - name: has_young_talents
+        description: "Indicates if league has young talents (age <= 23 and potential > 85)"
+  - name: int_league_insights_female
+    description: "League level analytics for female leagues"
+    columns:
+      - name: league_id
+        description: "The unique identifier of the league"
+        tests:
+          - unique
+          - not_null
+      - name: avg_league_rating
+        description: "Average rating of all teams in the league"
+      - name: has_young_talents
+        description: "Indicates if league has young talents (age <= 23 and potential > 85)"
